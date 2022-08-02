@@ -1,5 +1,10 @@
 package com.dzq.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -9,15 +14,17 @@ import java.util.Arrays;
  * @Description: com.dzq.pojo
  * @version: 1.0
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Person implements Serializable {
     private String pname;
     private Integer page;
     private Integer gender;
     private String[] hobby;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String birthdate;
 
-    public Person() {
-    }
 
     @Override
     public String toString() {
@@ -30,51 +37,5 @@ public class Person implements Serializable {
                 '}';
     }
 
-    public Person(String pname, Integer page, Integer gender, String[] hobby, String birthdate) {
-        this.pname = pname;
-        this.page = page;
-        this.gender = gender;
-        this.hobby = hobby;
-        this.birthdate = birthdate;
-    }
 
-    public String getPname() {
-        return pname;
-    }
-
-    public void setPname(String pname) {
-        this.pname = pname;
-    }
-
-    public Integer getPage() {
-        return page;
-    }
-
-    public void setPage(Integer page) {
-        this.page = page;
-    }
-
-    public Integer getGender() {
-        return gender;
-    }
-
-    public void setGender(Integer gender) {
-        this.gender = gender;
-    }
-
-    public String[] getHobby() {
-        return hobby;
-    }
-
-    public void setHobby(String[] hobby) {
-        this.hobby = hobby;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
 }
