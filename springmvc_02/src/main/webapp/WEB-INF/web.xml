@@ -20,6 +20,15 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <!--配置hiddenHttpMethodFilter ,将POST请求转换为PUT或者DELETE请求-->
+    <filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!--配置dispatcherServlet的映射路径为 / 包含全部的servlet,  JSP除外-->
     <servlet-mapping>
         <servlet-name>dispatcherServlet</servlet-name>
