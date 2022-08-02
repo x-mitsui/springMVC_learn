@@ -24,6 +24,7 @@ public class TestController {
      * */
     public String getPara(Person person){
         System.out.println(person);
+        System.out.println(person.getPets());
 
         return "successful!";
     }
