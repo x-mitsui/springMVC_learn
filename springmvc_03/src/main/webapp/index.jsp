@@ -1,3 +1,7 @@
+<html>
+<head>
+    <title>Title</title>
+</head>
 <%@page pageEncoding="UTF-8" %>
 
 <body>
@@ -37,3 +41,4 @@
     <input type="submit">
 </form>
 </body>
+</html>

@@ -7,15 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 
-/**
- * @Auther: x_mitsui
- * @Date: 2022/8/2 - 08 - 02 - 17:42
- * @Description: com.dzq.controller
- * @version: 1.0
- */
+
 @RestController
 public class TestController {
-    @RequestMapping(value = "/getDataByPojo",method = RequestMethod.POST)
     /*
      * 使用POJO接收参数时,注意事项
      * 提交的参数名必须和POJO的属性名保持一致
@@ -23,6 +17,7 @@ public class TestController {
      * 通过set方法设置属性值的,不是直接通过操作属性
      * POJO的属性一定要有set方法,要不然就会接收失败
      * */
+    @RequestMapping(value = "/getDataByPojo",method = RequestMethod.POST)
     public String getPara(Person person){
         System.out.println(person);
         System.out.println(person.getPets());
