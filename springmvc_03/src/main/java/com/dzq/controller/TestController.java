@@ -2,6 +2,7 @@ package com.dzq.controller;
 
 import com.dzq.pojo.Person;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -14,7 +15,7 @@ import java.util.Arrays;
  */
 @RestController
 public class TestController {
-    @RequestMapping("/getDataByPojo")
+    @RequestMapping(value = "/getDataByPojo",method = RequestMethod.POST)
     /*
      * 使用POJO接收参数时,注意事项
      * 提交的参数名必须和POJO的属性名保持一致
@@ -25,6 +26,7 @@ public class TestController {
     public String getPara(Person person){
         System.out.println(person);
         System.out.println(person.getPets());
+        System.out.println(person.getFruit());
 
         return "successful!";
     }

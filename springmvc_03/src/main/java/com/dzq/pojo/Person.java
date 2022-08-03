@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: x_mitsui
@@ -26,6 +27,8 @@ public class Person implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String birthdate;
     private List<Pet> pets;
+    private Fruit fruit;
+    private Map<String,Pet> petMap;
 
 
     @Override
@@ -37,6 +40,8 @@ public class Person implements Serializable {
                 ", hobby=" + Arrays.toString(hobby) +
                 ", birthdate='" + birthdate + '\'' +
                 ", pets=" + pets +
+                ", fruit=" + fruit +
+                ", petMap=" + petMap +
                 '}';
     }
 }
