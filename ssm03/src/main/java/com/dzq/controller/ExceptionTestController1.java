@@ -22,10 +22,10 @@ public class ExceptionTestController1 {
         return "success.jsp";
     }
     // 仅仅处理当前Controller异常
-    @ExceptionHandler(value = {ArithmeticException.class, NullPointerException.class})
-    public ModelAndView HandleException(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("fail.jsp");
-        return mv;
-    }
+    //@ExceptionHandler(value = {ArithmeticException.class, NullPointerException.class})
+    //public ModelAndView HandleException(){
+    //    ModelAndView mv = new ModelAndView();
+    //    mv.setViewName("fail.jsp");
+    //    return mv;
+    //}
 }
