@@ -8,6 +8,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class FileUploadController {
@@ -15,9 +18,13 @@ public class FileUploadController {
 
     @ResponseBody
     @RequestMapping("fileUpload.do")
-    public String fileUploaD(MultipartFile nameToUseByController, HttpServletRequest req) throws IOException {
-
+    public Map<String,String> fileUploaD(MultipartFile nameToUseByController, HttpServletRequest req) throws IOException {
+        Map<String,String> rlt = new HashMap<String, String>();
         String realUploadPath = req.getServletContext().getRealPath("upload");
+        if(nameToUseByController.getSize()>1024*1204*5){
+            rlt.put("message","文件大小不能超过5MB");
+            return rlt;
+        }
         // 指定文件存储目录
         File dir = new File(realUploadPath);
 
@@ -28,12 +35,24 @@ public class FileUploadController {
         // 原文件名
         String originalFilename = nameToUseByController.getOriginalFilename();
 
+        String extName = originalFilename.substring(originalFilename.lastIndexOf('.'));
+
+        if(!".png".equals(extName)){
+            rlt.put("message","不支持的文件类型");
+            return rlt;
+        }
+        String newFileName = UUID.randomUUID().toString().concat(extName);
+
         // 文件具体位置
-        File file = new File(dir, originalFilename);
+        File file = new File(dir, newFileName);
 
         // 往目标传输
         nameToUseByController.transferTo(file);
 
-        return "OK";
+        rlt.put("filename",newFileName);
+        rlt.put("url","upload/".concat(newFileName));
+        rlt.put("message","OK");
+        rlt.put("fileType",nameToUseByController.getContentType());
+        return rlt;
     }
 }

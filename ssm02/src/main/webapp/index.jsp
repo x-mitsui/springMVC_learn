@@ -27,9 +27,22 @@
                         url: "fileUpload.do",
                         processData: false,//向后台提交对象
                         contentType: false,//二进制类型
-                        success:function (result){
-                            console.log(result);
-                        }
+                        success: function (result) {
+                            console.log(result.message);
+                            // let img = new Image(200, 200);
+                            // console.log("upload/" + result.filename);
+                            // img.src = "upload/" + result.filename;
+                            // document.body.append(img)
+                            $("#pic").attr("src", "upload/" + result.filename);
+                        },
+                        xhr: function () {
+                            let xhr = new XMLHttpRequest();
+                            xhr.upload.addEventListener("progress", function (e) {
+                                let progressRate = (e.loaded / e.total) * 100 + "%";
+                                $(".progress > div").css("width", progressRate);
+                            })
+                            return xhr;
+                        },
                     })
                 }
             })
@@ -44,6 +57,11 @@
             <input type="file" id="photo">
             <a href="javascript:;" id="uploadBtn">立即上传</a>
         </p>
+        <img alt="图片未上传" style="width: 200px;height: 100px;" id="pic">
+        <div class="progress"
+             style="width: 200px;height: 20px;box-sizing: content-box;border: 2px solid red;position: relative;border-radius: 20px;overflow: hidden;">
+            <div style="position: absolute;left: 0;top: 0;width: 0%;height: 100%;transition: width .3s ease;background-color:#0ff;"></div>
+        </div>
         <p><input type="submit" value="注册"></p>
     </form>
 </head>
