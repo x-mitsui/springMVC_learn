@@ -41,5 +41,9 @@
             <mvc:mapping path="/login.action"/>
             <bean id="myInterceptor" class="com.dzq.interceptor.MyInterceptor"></bean>
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/login.action"/>
+            <bean id="myInterceptor2" class="com.dzq.interceptor.MyInterceptor2"></bean>
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>
